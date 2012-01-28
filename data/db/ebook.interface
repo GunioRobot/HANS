@@ -1,7 +1,7 @@
 [Interface Entry]
 Name=Ebook
 Notify=Has conectado un ebook
-Icon-Notify= 
+Icon-Notify=
 Action=open
-Recommend-Pkg= 
+Recommend-Pkg=
 

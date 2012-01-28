@@ -1,9 +1,9 @@
 [Interface Entry]
 Name=Interface
 Notify=Interface connected
-Icon= 
+Icon=
 Action=open
-Recommend-Pkg= 
+Recommend-Pkg=
 
 Name[es_ES]=Interfaz
 Notify[es_ES]=Interfaz conectada

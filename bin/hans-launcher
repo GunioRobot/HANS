@@ -18,7 +18,7 @@ for i in $(seq 0 $((${#SEATS3[*]} - 1))); do
                --type=method_call \
                --print-reply \
                ${SEATS3[$i]} org.freedesktop.ConsoleKit.Seat.GetActiveSession 2>&1)
-    
+
     #Check if sessions is active to launch HANS
     if [[ ! $DBUS_SESSIONS =~ "no active" && ! -z $DBUS_SESSIONS ]]
     then
@@ -29,7 +29,7 @@ for i in $(seq 0 $((${#SEATS3[*]} - 1))); do
                --type=method_call \
                --print-reply \
                $SESSION org.freedesktop.ConsoleKit.Session.GetUnixUser)
-        
+
         DBUS_X11_DISPLAY=$(dbus-send --system \
                --dest=org.freedesktop.ConsoleKit \
                --type=method_call \
@@ -39,12 +39,12 @@ for i in $(seq 0 $((${#SEATS3[*]} - 1))); do
         USER=$(getent passwd $(echo $UNIX_USER | sed -n 's/.*uint32 \(.*\).*/\1/gp') | sed -e 's/\:.*//')
         #Get user display
         X11_DISPLAY=$(echo $DBUS_X11_DISPLAY | sed -n 's/.*string "\(.*\)".*/\1/gp')
-        
+
         export DISPLAY=$X11_DISPLAY
         DEFLANG=$(cat /etc/default/locale | awk -F'=' '{print $2}' | sed 's/\"//g')
         export LANG=$DEFLANG
 	#Launch HANS in user session
         sudo -Eu $USER /usr/bin/hans -p $1 &>> /tmp/hans.log &
-        
+
     fi
 done
